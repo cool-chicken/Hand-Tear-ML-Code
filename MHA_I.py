@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
-from SDPA import ScaledDotProductAttention
+from SDPA_I import SDPA_I
 
 class multi_head_attention(nn.Module):
     def __init__(self,n_head,d_k_,d_v_,d_k,d_v,d_o):
@@ -14,7 +14,7 @@ class multi_head_attention(nn.Module):
         self.fc_q=nn.Linear(d_k_,n_head*d_k)
         self.fc_k=nn.Linear(d_k_,n_head*d_k)
         self.fc_v=nn.Linear(d_v_,n_head*d_v)
-        self.attention=ScaledDotProductAttention(scale=np.power(d_k,0.5))
+        self.attention=SDPA_I(scale=np.power(d_k,0.5))
         self.fc_o=nn.Linear(n_head*d_v,d_o)
 
     def forward(self,q,k,v,mask):
