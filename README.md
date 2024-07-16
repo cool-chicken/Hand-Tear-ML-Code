@@ -7,7 +7,7 @@ If you also have trouble with hand-tearing code, We can provide you with some si
 
 $$ Attention(Q,K,V) = softmax( \frac{QK^{T}}{\sqrt{d_{k}}}) $$
 
-### 2.MultiHeadAttention fuction []()
+### 2.MultiHeadAttention fuction [MHA.py]()
 - We abbreviate the fuction by calling it MHA
 - firstly, change the single head into multihead
 - secondly, focus on output as a single head

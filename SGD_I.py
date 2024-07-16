@@ -36,6 +36,7 @@ validate_every=4
 validate_occupy=0.2
 
 X,Y=fetch_california_housing(return_X_y=True)
+X.shape,Y.shape
 ones=np.ones(shape=(X.shape[0],1))
 X=np.hstack([X,ones])
 X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=validate_occupy,shuffle=True)
@@ -48,22 +49,22 @@ def train(num_epochs:int,batch_size:int,validate_every:int,W0:np.ndarray,X_train
    for epoch in loop:
        loss_train_epoch=0
        for x_batch,y_batch in get_batch(batch_size,X_train,Y_train):
-           loss_batch=mse_loss(x_batch,y_batch,W)
+           loss_batch=mse_loss(X = x_batch,Y = y_batch,W = W)
            loss_train_epoch+=loss_batch*x_batch.shape[0]/X_train.shape[0]
-           grad_t=loss_grad(x_batch,y_batch,W)
+           grad_t=loss_grad(X = x_batch,Y = y_batch,W = W)
            W=W-lr*grad_t
 
        loss_train.append(loss_train_epoch)
        loop.set_description(f'EPOCH:{epoch},TRAIN_LOSS:{loss_train_epoch}')
 
        if epoch%validate_every==0:
-           loss_validate_epoch=mse_loss(X_test,Y_test,W)
+           loss_validate_epoch=mse_loss(X=X_test,Y=Y_test,W=W)
            loss_validate.append(loss_validate_epoch)
            print('=============validate==============')
            print(f'Epoch:{epoch},train loss:{loss_train_epoch},val loss:{loss_validate_epoch}')
            print('===================================')
 
-   plot_loss(loss_train,loss_validate,validate_every)
+   plot_loss(np.array(loss_train),np.array(loss_validate),validate_every)
 
 
 
