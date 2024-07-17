@@ -30,7 +30,7 @@ def train(model, data_loader, optimizer, criterion, epochs):
     model.train()
     for epoch in range(epochs):
         for inputs, targets in data_loader:
-            h_0 = torch.zeros(1, inputs.size(0), 32)  # 初始化隐藏状态
+            h_0 = torch.zeros(1, inputs.size(0), 32)
             optimizer.zero_grad()
             outputs, _ = model(inputs, h_0)
             loss = criterion(outputs, targets)
