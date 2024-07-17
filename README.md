@@ -13,4 +13,19 @@ $$ Attention(Q,K,V) = softmax( \frac{QK^{T}}{\sqrt{d_{k}}}) $$
 - secondly, focus on output as a single head
 - thirdly,the final output is obtained by affine transformation
 
-### 3.
+### 3.stochastic gradient descent[SGD_I.py]()
+- We abbreviate the fuction by calling it SGD
+
+### 4.backward propagation[BP_I.py]()
+- We abbreviate the fuction by calling it BP
+- Using gradient descent, to update the weight of all, so in the forward propagation its output is more specific
+
+### 5.k-means example[k-means.py]()
+
+### 6.RNN example[RNN.py]()
+- We abbreviate the fuction by calling it RNN
+- Defines an RNN model, contains an RNN layer and one output layer. 
+- generate_data function: Generate random data and simulate training data. 
+- train function: 
+  - The loss values were collected for each epoch. 
+  - List training model and return loss value.
